@@ -4,18 +4,45 @@
 #include "Optimized.h"
 
 int main(int argc, char *argv[]){
-    Optimized fs;
-    fs.addRequest(DiskRequest(38));
-    fs.addRequest(DiskRequest(180));
-    fs.addRequest(DiskRequest(130));
-    fs.addRequest(DiskRequest(10));
-    fs.addRequest(DiskRequest(50));
-    fs.addRequest(DiskRequest(15));
-    fs.addRequest(DiskRequest(190));
-    fs.addRequest(DiskRequest(90));
-    fs.addRequest(DiskRequest(150));
+    FCFS fcfs;
+    Optimized optimized;
+    std::cout << "Please enter the initial head position: ";
+    unsigned int initialHead;
+    std::cin >> initialHead;
+    fcfs.setHeadPosition(initialHead);
+    optimized.setHeadPosition(initialHead);
+    std::cout << "Please enter the number of disk requests: ";
+    unsigned int nRequests;
+    std::cin >> nRequests;
+    for(unsigned int i = 0; i < nRequests; ++i){
+        std::cout << "Please enter request #" << i << " required cylinder: ";
+        unsigned int cylinder;
+        std::cin >> cylinder;
+        DiskRequest request(cylinder);
+        fcfs.addRequest(request);
+        optimized.addRequest(request);
+    }
 
-    fs.setHeadPosition(20);
-    std::cout << fs.getHeadMovements() << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "FCFS algorithm processing sequence: ";
+    auto fcfs_seq = fcfs.getProcessingSequence();
+    for(DiskRequest req : fcfs_seq){
+        std::cout << req.getCylinder() << ' ';
+    }
+    std::cout << std::endl;
+    std::cout << "Total head movements: " << fcfs.getHeadMovements() << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << "Optimized algorithm processing sequence: ";
+    auto optim_seq = optimized.getProcessingSequence();
+    for(DiskRequest req : optim_seq){
+        std::cout << req.getCylinder() << ' ';
+    }
+    std::cout << std::endl;
+
+    std::cout << "Total head movements: " << optimized.getHeadMovements() << std::endl;
+
     return 0;
 }
