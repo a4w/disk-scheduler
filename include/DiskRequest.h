@@ -8,8 +8,9 @@ class DiskRequest{
     public:
         DiskRequest(unsigned int cylinder);
         virtual ~DiskRequest();
-        unsigned int getCylinder();
+        unsigned int getCylinder() const;
         void setCylinder(unsigned int cylinder);
+        bool operator<(const DiskRequest& rhs)const;
 };
 
 #endif

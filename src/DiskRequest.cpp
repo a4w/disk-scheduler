@@ -10,7 +10,10 @@ void DiskRequest::setCylinder(unsigned int cylinder){
     this->cylinder = cylinder;
 }
 
-unsigned int DiskRequest::getCylinder(){
+unsigned int DiskRequest::getCylinder() const {
     return this->cylinder;
 }
 
+bool DiskRequest::operator<(const DiskRequest &rhs) const {
+    return this->getCylinder() < rhs.getCylinder();
+}
