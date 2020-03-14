@@ -13,7 +13,7 @@ class FCFS : public IDiskSchedulingAlgorithm{
         std::vector<DiskRequest> getProcessingSequence();
         void setHeadPosition(unsigned int position);
         unsigned int getHeadPosition();
-        unsigned long getHeadMovments();
+        unsigned long getHeadMovements();
 };
 
 #endif

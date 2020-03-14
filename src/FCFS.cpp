@@ -1,4 +1,5 @@
 #include "FCFS.h"
+#include <math.h>
 
 void FCFS::addRequest(DiskRequest request){
     this->list.push_back(request);
@@ -16,11 +17,11 @@ unsigned int FCFS::getHeadPosition(){
     return this->head;
 }
 
-unsigned long FCFS::getHeadMovments(){
+unsigned long FCFS::getHeadMovements(){
     unsigned int current = this->head;
     unsigned long movement = 0;
     for(DiskRequest request : this->list){
-        movement += std::abs(request.getCylinder() - current);
+        movement += std::abs(request.getCylinder() - (long) current);
     }
     return movement;
 }
