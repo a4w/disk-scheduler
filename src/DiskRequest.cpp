@@ -1,4 +1,4 @@
-#include "../include/DiskRequest.h"
+#include "DiskRequest.h"
 
 DiskRequest::~DiskRequest(){};
 
