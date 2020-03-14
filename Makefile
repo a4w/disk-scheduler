@@ -2,6 +2,7 @@ CXX := g++
 CFLAGS := -g -Wall -std=c++11
 SRCDIR := ./src
 BUILDDIR := ./build
+INCLUDEDIR := ./include
 TARGET := ./bin/run
 
 SRCEXT := cpp
@@ -16,7 +17,7 @@ $(TARGET): $(OBJECTS)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
-	$(CXX) $(CFLAGS) -c $^ -o $@
+	$(CXX) $(CFLAGS) -I$(INCLUDEDIR) -c $^ -o $@
 
 clean:
 	@echo "Cleaning...";
