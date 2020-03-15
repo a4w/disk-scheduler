@@ -18,11 +18,6 @@ unsigned int Optimized::getHeadPosition(){
 }
 
 unsigned long Optimized::getHeadMovements(){
-    unsigned int current = 0;
-    unsigned long movement = this->head;
-    for(DiskRequest request : this->list){
-        movement += std::abs(request.getCylinder() - (long) current);
-        current = request.getCylinder();
-    }
-    return movement;
+    if(this->list.size() == 0) return 0l;
+    else return (*(this->list.rbegin())).getCylinder();
 }
